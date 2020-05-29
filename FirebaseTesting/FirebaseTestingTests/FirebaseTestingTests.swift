@@ -15,10 +15,15 @@ import FirebaseStorage
 @testable import FirebaseTesting
 
 class FirebaseTestingTests: XCTestCase {
+  override func setUp() {
+    super.setUp()
+    FirebaseApp.configure()
+  }
   
-  
-  // unit test
-  func testIfFilePathExist() {
+  //===========================================================================
+  // unit test - testIfFilePathExist
+  //===========================================================================
+    func testIfFilePathExist() {
     // arrange
     let queryPath = Bundle.main.path(forResource: "landscape2", ofType: "jpg") // optional String?
     
@@ -32,7 +37,9 @@ class FirebaseTestingTests: XCTestCase {
     XCTAssert(true)
   }
   
-  // unit test
+  //===========================================================================
+  // unit test - testConvertBundlePathToData
+  //===========================================================================
   func testConvertBundlePathToData() {
     // arrange
     let queryPath = Bundle.main.path(forResource: "landscape1", ofType: "jpg") // optional String?
@@ -189,6 +196,4 @@ class FirebaseTestingTests: XCTestCase {
     
     wait(for: [exp], timeout: 10.0)
   }
-  
-  
 }
