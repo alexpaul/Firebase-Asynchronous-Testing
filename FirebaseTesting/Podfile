@@ -8,6 +8,7 @@ def all_pods
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'FirebaseFirestoreSwift'
 end
 
 # Pods for FirebaseTesting

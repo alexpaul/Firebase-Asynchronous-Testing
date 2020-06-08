@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseFirestoreSwift
 
 @testable import FirebaseTesting
 
@@ -23,7 +24,7 @@ class FirebaseTestingTests: XCTestCase {
   //===========================================================================
   // unit test - testIfFilePathExist
   //===========================================================================
-    func testIfFilePathExist() {
+  func testIfFilePathExist() {
     // arrange
     let queryPath = Bundle.main.path(forResource: "landscape2", ofType: "jpg") // optional String?
     
@@ -155,6 +156,37 @@ class FirebaseTestingTests: XCTestCase {
       }
     }
     
+  }
+  
+  
+  //===========================================================================
+  // firebase - testing timestamp
+  //===========================================================================
+  
+  func testCreateWorkout() {
+    // arrange
+    let workoutTimeStamp = Timestamp(date: Date())
+    let workoutType = "Running"
+    let workoutTitle = "Foreset Park Run"
+    
+    let workoutDict: [String: Any ] = ["workoutTimeStamp": workoutTimeStamp,
+                                       "workoutType": workoutType,
+                                       "workoutTitle": workoutTitle
+    ]
+    
+    let exp = XCTestExpectation(description: "workout created")
+    
+    // act
+    Firestore.firestore().collection("workouts").document(UUID().uuidString).setData(workoutDict) { (error) in
+      // assert
+      exp.fulfill()
+      if let error = error {
+        XCTFail("failed to create workout with error: \(error.localizedDescription)")
+      }
+      XCTAssert(true)
+    }
+        
+    wait(for: [exp], timeout: 3.0)
   }
   
   
