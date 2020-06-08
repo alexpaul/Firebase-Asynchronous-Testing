@@ -167,7 +167,7 @@ class FirebaseTestingTests: XCTestCase {
     // arrange
     let workoutTimeStamp = Timestamp(date: Date())
     let workoutType = "Running"
-    let workoutTitle = "Foreset Park Run"
+    let workoutTitle = "Flushing Meadows"
     
     let workoutDict: [String: Any ] = ["workoutTimeStamp": workoutTimeStamp,
                                        "workoutType": workoutType,
